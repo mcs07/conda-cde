@@ -1,0 +1,36 @@
+{% set name = "python-crfsuite" %}
+{% set version = "0.8.4" %}
+{% set sha256 = "" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+test:
+  imports:
+    - pycrfsuite
+
+about:
+  home: https://github.com/tpeng/python-crfsuite
+  license: MIT
+  summary: 'Python binding for CRFsuite'
+
+extra:
+  recipe-maintainers:
+    - mcs07
