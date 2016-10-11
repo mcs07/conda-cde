@@ -1,6 +1,6 @@
 {% set name = "ChemDataExtractor" %}
-{% set version = "1.1.1" %}
-{% set sha256 = "9ee8dd415ad99c685ac63c9638a2d184262f5b19981544acab176671ed968dae" %}
+{% set version = "1.2.0" %}
+{% set sha256 = "67f396d96358dbcff48c7d42fd70363d36cb5ca461789f78f7d7e026e9d82ba4" %}
 
 package:
   name: {{ name|lower }}
@@ -31,8 +31,8 @@ requirements:
     - pdfminer.six
     - python-crfsuite
     - python-dateutil
+    - pyyaml
     - requests
-    - schematics
     - six
 
 test:
