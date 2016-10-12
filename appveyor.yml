@@ -56,7 +56,7 @@ install:
 build: false
 
 test_script:
-    - '%CMD_IN_ENV% conda-build-all .\recipes --inspect-channels chemdataextractor --upload-channels chemdataextractor --matrix-conditions "numpy >=1.10" "%PY_CONDITION%"'
+    - '%CMD_IN_ENV% conda-build-all recipes --inspect-channels chemdataextractor --upload-channels chemdataextractor --matrix-conditions "numpy >=1.10" "%PY_CONDITION%"'
     - cmd: mkdir conda_packages
     - cmd: 'copy /Y C:\Miniconda\conda-bld\win-32\*.bz2 conda_packages || cmd /c "exit /b 0"'
     - cmd: 'copy /Y C:\Miniconda-x64\conda-bld\win-64\*.bz2 conda_packages || cmd /c "exit /b 0"'
