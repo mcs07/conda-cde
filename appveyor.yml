@@ -2,7 +2,7 @@ environment:
   CONDA_INSTALL_LOCN: "C:\\conda"
   CMD_IN_ENV: "cmd /E:ON /V:ON /C obvci_appveyor_python_build_env.cmd"
   BINSTAR_TOKEN:
-    secure: 6qFx22Gu4kH7vVbpw3AgtoPKEtJiSGhVpHHd8qAB7nGD6MogK4KfaxHp6IjUizxp
+    secure: ZHXZzhINhF82bnj8OxVfS5wv8b/98jYE3oqwSKmc5I+1JRmvIV0euxnzCeW8qFkI
 
   matrix:
     - TARGET_ARCH: "x86"
