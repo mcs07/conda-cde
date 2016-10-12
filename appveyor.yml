@@ -24,6 +24,9 @@ environment:
       CONDA_PY: "35"
       PY_CONDITION: "python >=3.5,<3.6"
 
+platform:
+    - x64
+
 install:
     - setlocal enableextensions enabledelayedexpansion
     - cmd: rmdir C:\cygwin /s /q
