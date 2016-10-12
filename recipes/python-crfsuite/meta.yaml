@@ -10,15 +10,27 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - os.h.patch
+    - inttypes.h.patch
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  features:
+    - vc9  # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and py35]
+  script:
+    - source activate "${CONDA_DEFAULT_ENV}"  # [unix]
+    - python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
     - python
     - setuptools
+    - vc   9  # [win and py27]
+    - vc  10  # [win and py34]
+    - vc  14  # [win and py35]
   run:
     - python
 
