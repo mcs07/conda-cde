@@ -1,0 +1,51 @@
+environment:
+  CONDA_INSTALL_LOCN: "C:\\conda"
+  CMD_IN_ENV: "cmd /E:ON /V:ON /C obvci_appveyor_python_build_env.cmd"
+  ANACONDA_TOKEN:
+    secure: 6qFx22Gu4kH7vVbpw3AgtoPKEtJiSGhVpHHd8qAB7nGD6MogK4KfaxHp6IjUizxp
+
+  matrix:
+    - TARGET_ARCH: "x86"
+      CONDA_PY: "27"
+      PY_CONDITION: "python >=2.7,<3"
+    - TARGET_ARCH: "x86"
+      CONDA_PY: "34"
+      PY_CONDITION: "python >=3.4,<3.5"
+    - TARGET_ARCH: "x86"
+      CONDA_PY: "35"
+      PY_CONDITION: "python >=3.5,<3.6"
+    - TARGET_ARCH: "x64"
+      CONDA_PY: "27"
+      PY_CONDITION: "python >=2.7,<3"
+    - TARGET_ARCH: "x64"
+      CONDA_PY: "34"
+      PY_CONDITION: "python >=3.4,<3.5"
+    - TARGET_ARCH: "x64"
+      CONDA_PY: "35"
+      PY_CONDITION: "python >=3.5,<3.6"
+
+install:
+    - setlocal enableextensions enabledelayedexpansion
+    - cmd: rmdir C:\cygwin /s /q
+    - cmd: set CONDA_NPY=19
+    - cmd: set "UPLOAD_CHANNELS= "
+    - cmd: if defined ANACONDA_TOKEN set "UPLOAD_CHANNELS=--upload-channels chemdataextractor"
+    - cmd: echo %UPLOAD_CHANNELS%
+    - appveyor DownloadFile "https://raw.githubusercontent.com/pelson/Obvious-CI/master/bootstrap-obvious-ci-and-miniconda.py"
+    - cmd: python bootstrap-obvious-ci-and-miniconda.py %CONDA_INSTALL_LOCN% %TARGET_ARCH% 3 --without-obvci
+    - cmd: set CONDA_PY=%CONDA_PY%
+    - cmd: set PATH=%PATH%;%CONDA_INSTALL_LOCN%;%CONDA_INSTALL_LOCN%\scripts
+    - cmd: set PYTHONUNBUFFERED=1
+    - cmd: conda config --add channels chemdataextractor
+    - cmd: conda config --set show_channel_urls yes
+    - cmd: conda install --yes --quiet -c conda-forge obvious-ci
+    - cmd: conda install --yes --quiet -c conda-forge conda-build-all
+    - cmd: conda update --yes --quiet conda conda-build
+    - cmd: conda install --yes --quiet jinja2 anaconda-client
+
+    - cmd: conda info
+
+build: false
+
+test_script:
+    - '%CMD_IN_ENV% conda-build-all .\ --inspect-channels chemdataextractor %UPLOAD_CHANNELS% --matrix-condition "numpy >=1.8,<=1.10" "%PY_CONDITION%"'
