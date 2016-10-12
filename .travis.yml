@@ -1,0 +1,24 @@
+language: generic
+os:
+ - osx
+sudo: false
+env:
+  global:
+    secure: "SWg1T92gh8GrKn4db6WDvKHbq5RMTp9YxNdBjeD2r8VPOJ9LEsjSIsBXsoQ5Ox35q1PHgCkPz5zhT5r6auYGdRzKy+6CZh/NJgdsDy9UiTy9r3wCfdmyoXh5Zlu0ZGrgCGwhkY6H1yOE/yq/2oLM8dhwfhPuIsceke2P0PRnWUAAGzUXWHNa9qQCKxxS7IJSXKU7+bA4Wd1pUB7WjA1vxorJJPxGT4TodLPukrFYo8SN7uIMB53y/tbtiBOrYl7/8387KLSu0l//HOqTUTtnsKobv6bsrOndFv1vxFejg1L/83/Gcxv6TxyCUIuqQ7tH1uLcUqdm5JkuXFuZgYzdPHh9W6Ag5eG7x9w9preg2o4EAGII076XptAka/KjRbkmjud3fjO6Rx7oq4UHr4LVvck+7k6ZUpu03Ik6XX//TGZcpY3ent0kc4s5/pBMiptLd1VLMBRyrcIO86aBKsPqTc/ugoU+NfNySo3V1WSa1sezfXtn0cAkvUhP+LDiKV68qY1qOvCzzlixwRaq8Dup99eNGQIX+vmmnOJn65piNB0fPph6PLSHsmXaeRHv74j9MmzAnVaIUBtY/gcbOrbF896T0HfhvoADJ/ITCVzD3B17fNZ6zkrA+mUTPNzSpvHIV4HzDhv5N4HpQATLqSDDaTtmOD6VJQiu4PvOVQY26gE="
+before_install:
+    # Remove homebrew.
+    - brew remove --force $(brew list)
+    - brew cleanup -s
+    - rm -rf $(brew --cache)
+install:
+    - export UPLOAD_CHANNELS=$(if [ -z ${BINSTAR_TOKEN+x} ]; then echo ""; else echo "--upload-channels chemdataextractor"; fi)
+    - wget https://raw.githubusercontent.com/pelson/Obvious-CI/master/bootstrap-obvious-ci-and-miniconda.py
+    - python bootstrap-obvious-ci-and-miniconda.py ~/miniconda x64 3 --without-obvci && source ~/miniconda/bin/activate root
+    - conda config --add channels conda-forge
+    - conda config --add channels chemdataextractor
+    - conda config --set show_channel_urls True
+    - conda install --yes --quiet -c conda-forge conda-build-all
+    - conda update -n root --yes --quiet conda conda-build
+    - conda install -n root --yes --quiet jinja2 anaconda-client
+script:
+    - conda-build-all ./ --inspect-channels chemdataextractor ${UPLOAD_CHANNELS} --matrix-condition "python >=2.7,<3|>=3.4,<3.5|>=3.5,<3.6"
