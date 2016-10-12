@@ -52,4 +52,4 @@ install:
 build: false
 
 test_script:
-    - '%CMD_IN_ENV% conda-build-all .\ --inspect-channels chemdataextractor %UPLOAD_CHANNELS% --matrix-condition "numpy >=1.8,<=1.10" "%PY_CONDITION%"'
+    - '%CMD_IN_ENV% conda-build-all .\ --inspect-channels chemdataextractor %UPLOAD_CHANNELS% --matrix-condition "%PY_CONDITION%"'
