@@ -42,10 +42,10 @@ install:
     - cmd: set CPU_COUNT=2
     - cmd: conda config --add channels conda-forge
     - cmd: conda config --add channels chemdataextractor
-    - cmd: conda update --yes --quiet conda conda-build
+    - cmd: conda update --yes --quiet conda
     - cmd: conda config --set show_channel_urls true
     - cmd: conda config --set add_pip_as_python_dependency false
-    - cmd: conda install --yes --quiet obvious-ci conda-build-all jinja2 anaconda-client
+    - cmd: conda install --yes --quiet conda-build obvious-ci conda-build-all jinja2 anaconda-client
     - cmd: conda info
     - cmd: conda config --get
 
