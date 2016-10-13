@@ -5,7 +5,7 @@ REPO_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 cat << EOF | docker run -i \
                         -v ${REPO_ROOT}:/conda-cde \
                         -a stdin -a stdout -a stderr \
-                        pelson/obvious-ci:latest_x64 \
+                        condaforge/linux-anvil \
                         bash || exit $?
 
 cp -r /conda-cde/recipes /conda-recipes
@@ -13,7 +13,6 @@ export BINSTAR_TOKEN=${BINSTAR_TOKEN}
 export CONDA_NPY='19'
 export CPU_COUNT=2
 export PYTHONUNBUFFERED=1
-conda config --add channels conda-forge
 conda config --add channels chemdataextractor
 conda config --set show_channel_urls True
 conda config --set add_pip_as_python_dependency false
