@@ -47,13 +47,9 @@ install:
     - cmd: conda config --add channels conda-forge
     - cmd: conda config --add channels chemdataextractor
     - cmd: conda config --set show_channel_urls true
-    - cmd: conda update --yes --quiet conda
-    - cmd: conda install --yes --quiet obvious-ci conda-build-all
-    - cmd: set CPU_COUNT=2
-    - cmd: set PYTHONUNBUFFERED=1
     - cmd: conda config --set add_pip_as_python_dependency false
-    - cmd: conda update -n root --yes --quiet conda
-    - cmd: conda install -n root --yes --quiet jinja2 conda-build anaconda-client
+    - cmd: conda update --yes --quiet conda
+    - cmd: conda install --yes --quiet obvious-ci conda-build-all jinja2 conda-build anaconda-client
     - cmd: conda info
     - cmd: conda config --get
 
