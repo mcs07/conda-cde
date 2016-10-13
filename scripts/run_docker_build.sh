@@ -5,7 +5,7 @@ REPO_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 cat << EOF | docker run -i \
                         -v ${REPO_ROOT}:/conda-cde \
                         -a stdin -a stdout -a stderr \
-                        condaforge/linux-anvil \
+                        pelson/obvious-ci:latest_x64 \
                         bash || exit $?
 
 cp -r /conda-cde/recipes /conda-recipes
@@ -18,7 +18,7 @@ conda config --add channels chemdataextractor
 conda config --set show_channel_urls True
 conda config --set add_pip_as_python_dependency false
 conda clean --lock
-conda update -n root --yes --quiet conda conda-build
+conda update --yes --quiet conda conda-build
 conda install --yes --quiet -c conda-forge conda-build-all
 conda install --yes --quiet jinja2 anaconda-client
 conda info
