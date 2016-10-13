@@ -13,11 +13,12 @@ export BINSTAR_TOKEN=${BINSTAR_TOKEN}
 export CONDA_NPY='19'
 export CPU_COUNT=2
 export PYTHONUNBUFFERED=1
+conda config --add channels conda-forge
 conda config --add channels chemdataextractor
 conda config --set show_channel_urls True
 conda config --set add_pip_as_python_dependency false
 conda clean --lock
-conda update --yes --quiet -c default conda conda-build
+conda update --yes --quiet -c defaults conda conda-build
 conda install --yes --quiet -c conda-forge conda-build-all
 conda install --yes --quiet jinja2 anaconda-client
 conda info
