@@ -46,6 +46,7 @@ install:
     - cmd: conda config --set show_channel_urls true
     - cmd: conda config --set add_pip_as_python_dependency false
     - cmd: conda install --yes --quiet conda-build obvious-ci conda-build-all jinja2 anaconda-client
+    - cmd: conda update --yes --quiet -c defaults conda conda-build
     - cmd: conda info
     - cmd: conda config --get
 

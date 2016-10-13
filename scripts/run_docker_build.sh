@@ -21,6 +21,7 @@ conda clean --lock
 conda update --yes --quiet -c defaults conda conda-build
 conda install --yes --quiet -c conda-forge conda-build-all
 conda install --yes --quiet jinja2 anaconda-client
+conda update --yes --quiet -c defaults conda conda-build
 conda info
 conda config --get
 conda-build-all /conda-recipes --inspect-channels chemdataextractor --upload-channels chemdataextractor --matrix-conditions "numpy >=1.10" "python >=2.7,<3|>=3.4,<3.5|>=3.5,<3.6"
