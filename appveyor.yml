@@ -1,6 +1,5 @@
 environment:
   CMD_IN_ENV: "cmd /E:ON /V:ON /C obvci_appveyor_python_build_env.cmd"
-  PYTHONIOENCODING: "UTF-8"
   BINSTAR_TOKEN:
     secure: ZHXZzhINhF82bnj8OxVfS5wv8b/98jYE3oqwSKmc5I+1JRmvIV0euxnzCeW8qFkI
 
@@ -63,5 +62,5 @@ build: false
 test_script:
     - '%CMD_IN_ENV% conda-build-all recipes --inspect-channels chemdataextractor --upload-channels chemdataextractor --matrix-conditions "numpy >=1.10" "%PY_CONDITION%"'
     - cmd: mkdir conda_packages
-    - cmd: 'copy /Y C:\Miniconda\conda-bld\win-32\*.bz2 conda_packages || cmd /c "exit /b 0"'
-    - cmd: 'copy /Y C:\Miniconda-x64\conda-bld\win-64\*.bz2 conda_packages || cmd /c "exit /b 0"'
+    - cmd: 'copy /Y %CONDA_INSTALL_LOCN%\conda-bld\win-32\*.bz2 conda_packages || cmd /c "exit /b 0"'
+    - cmd: 'copy /Y %CONDA_INSTALL_LOCN%\conda-bld\win-64\*.bz2 conda_packages || cmd /c "exit /b 0"'
