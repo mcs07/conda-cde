@@ -39,17 +39,18 @@ install:
     - setlocal enableextensions enabledelayedexpansion
     - cmd: rmdir C:\cygwin /s /q
     - cmd: set CONDA_NPY=19
-    - cmd: set "OLDPATH=%PATH%"
-    - cmd: set "PATH=%CONDA_INSTALL_LOCN%\\Scripts;%CONDA_INSTALL_LOCN%\\Library\\bin;%PATH%"
-    - cmd: conda update --yes --quiet conda
-    - cmd: set "PATH=%OLDPATH%"
-    - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
+    - appveyor DownloadFile "https://raw.githubusercontent.com/pelson/Obvious-CI/master/bootstrap-obvious-ci-and-miniconda.py"
+    - cmd: python bootstrap-obvious-ci-and-miniconda.py %CONDA_INSTALL_LOCN% %TARGET_ARCH% 3 --without-obvci
+    - cmd: set CONDA_PY=%CONDA_PY%
+    - cmd: set PATH=%PATH%;%CONDA_INSTALL_LOCN%;%CONDA_INSTALL_LOCN%\scripts
+    - cmd: set PYTHONUNBUFFERED=1
+    - cmd: set CPU_COUNT=2
     - cmd: conda config --add channels conda-forge
     - cmd: conda config --add channels chemdataextractor
+    - cmd: conda update --yes --quiet conda conda-build
     - cmd: conda config --set show_channel_urls true
     - cmd: conda config --set add_pip_as_python_dependency false
-    - cmd: conda update --yes --quiet conda
-    - cmd: conda install --yes --quiet obvious-ci conda-build-all jinja2 conda-build anaconda-client
+    - cmd: conda install --yes --quiet obvious-ci conda-build-all jinja2 anaconda-client
     - cmd: conda info
     - cmd: conda config --get
 
