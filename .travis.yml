@@ -11,7 +11,7 @@ before_install:
   - rm -rf $(brew --cache)
 install:
   - export CONDA_NPY=19
-  - curl -L -O https://raw.githubusercontent.com/pelson/Obvious-CI/master/bootstrap-obvious-ci-and-miniconda.py
+  - curl -L -O https://raw.githubusercontent.com/conda-forge/conda-smithy/master/bootstrap-obvious-ci-and-miniconda.py
   - python bootstrap-obvious-ci-and-miniconda.py ~/miniconda x64 3 --without-obvci && source ~/miniconda/bin/activate root
   - conda config --add channels conda-forge
   - conda config --add channels chemdataextractor
