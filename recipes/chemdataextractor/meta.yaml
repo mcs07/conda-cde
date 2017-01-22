@@ -1,6 +1,6 @@
 {% set name = "ChemDataExtractor" %}
-{% set version = "1.2.2" %}
-{% set sha256 = "de1fccdc1b495cf97e1afd4fb64f769ee0ea2ab240e20b6c90eac9a0e98a5f4e" %}
+{% set version = "1.2.3" %}
+{% set sha256 = "980e995027fc528a4af96621531f3f1d9f9f67f3c27a6d2b950c8c7c20c8d8b3" %}
 
 package:
   name: {{ name|lower }}
