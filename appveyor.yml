@@ -40,6 +40,7 @@ install:
     - cmd: set PATH=%PATH%;%CONDA_INSTALL_LOCN%;%CONDA_INSTALL_LOCN%\scripts
     - cmd: set PYTHONUNBUFFERED=1
     - cmd: set CPU_COUNT=2
+    - cmd: conda config --add channels conda-forge
     - cmd: conda config --add channels chemdataextractor
     - cmd: conda config --set show_channel_urls true
     - cmd: conda config --set add_pip_as_python_dependency false
