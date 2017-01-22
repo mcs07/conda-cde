@@ -18,10 +18,9 @@ conda config --add channels chemdataextractor
 conda config --set show_channel_urls True
 conda config --set add_pip_as_python_dependency false
 conda clean --lock
-conda update --yes --quiet -c defaults conda conda-build
-conda install --yes --quiet -c conda-forge conda-build-all
-conda install --yes --quiet jinja2 anaconda-client
-conda update --yes --quiet -c defaults conda conda-build
+conda install --yes --quiet -c conda-forge conda-build-all conda-build==2.0.10
+conda update --yes --quiet -c conda-forge conda
+conda install --yes --quiet -c conda-forge jinja2 anaconda-client
 conda info
 conda config --get
 conda-build-all /conda-recipes --inspect-channels chemdataextractor --upload-channels chemdataextractor --matrix-conditions "numpy >=1.10" "python >=2.7,<3|>=3.4,<3.5|>=3.5,<3.6"
