@@ -31,7 +31,7 @@ test:
     - pdf2txt.py -h
 
 about:
-  home: http://github.com/goulu/pdfminer
+  home: https://github.com/pdfminer/pdfminer.six
   license: MIT
   summary: 'PDF parser and analyzer'
 
