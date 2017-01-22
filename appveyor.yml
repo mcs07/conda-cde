@@ -13,7 +13,10 @@ environment:
       PY_CONDITION: "python >=3.4,<3.5"
     - TARGET_ARCH: "x86"
       CONDA_PY: "35"
-      PY_CONDITION: "python >=3.5"
+      PY_CONDITION: "python >=3.5,<3.6"
+    - TARGET_ARCH: "x86"
+      CONDA_PY: "36"
+      PY_CONDITION: "python >=3.6,<3.7"
     - TARGET_ARCH: "x64"
       CONDA_PY: "27"
       PY_CONDITION: "python >=2.7,<3"
@@ -22,7 +25,10 @@ environment:
       PY_CONDITION: "python >=3.4,<3.5"
     - TARGET_ARCH: "x64"
       CONDA_PY: "35"
-      PY_CONDITION: "python >=3.5"
+      PY_CONDITION: "python >=3.5,<3.6"
+    - TARGET_ARCH: "x64"
+      CONDA_PY: "36"
+      PY_CONDITION: "python >=3.6,<3.7"
 
 artifacts:
     - path: 'conda_packages\*.bz2'

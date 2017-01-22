@@ -23,6 +23,6 @@ conda update --yes --quiet -c conda-forge conda
 conda install --yes --quiet -c conda-forge jinja2 anaconda-client
 conda info
 conda config --get
-conda-build-all /conda-recipes --inspect-channels chemdataextractor --upload-channels chemdataextractor --matrix-conditions "numpy >=1.10" "python >=2.7,<3|>=3.4,<3.5|>=3.5,<3.6"
+conda-build-all /conda-recipes --inspect-channels chemdataextractor --upload-channels chemdataextractor --matrix-conditions "numpy >=1.10" "python >=2.7,<3|>=3.4,<3.5|>=3.5,<3.6|>=3.6,<3.7"
 
 EOF
