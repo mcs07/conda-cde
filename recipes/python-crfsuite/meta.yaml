@@ -1,6 +1,6 @@
 {% set name = "python-crfsuite" %}
-{% set version = "0.8.4" %}
-{% set sha256 = "d54ec1760f9e912abbb42c7fb8d55c2eaabb78d7daa26ee0ae39d010fe8e4426" %}
+{% set version = "0.9.1" %}
+{% set sha256 = "367d87d53704120c41852d89cf4b86cc637a79fda1f6b740c79942b5cc21f3c0" %}
 
 package:
   name: {{ name|lower }}
@@ -40,7 +40,7 @@ test:
     - pycrfsuite
 
 about:
-  home: https://github.com/tpeng/python-crfsuite
+  home: https://github.com/scrapinghub/python-crfsuite
   license: MIT
   summary: 'Python binding for CRFsuite'
 
